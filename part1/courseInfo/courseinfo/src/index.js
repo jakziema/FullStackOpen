@@ -1,43 +1,68 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const Header = (props) => {
+const Header = ({course}) => {
   return (
-    <h1>{props.name}</h1>
+    <h1>{course}</h1>
   )
 }
 
-const Content = (props) => {
+const Part = (props) => {
   return (
-      <p>{props.name} {props.number}</p> 
+  <p>{props.part} : {props.exercises}</p>
   )
 }
 
-const Total = (props) => {
-  return(
-
-      <p>Number of exercises = {props.totalNumber}</p>
+const Content = (part) => {
+  return (
+    <div>
+      <Part />
+      <Part />
+      <Part />
+    </div>
+    
   )
+}
+
+const Total = ({ parts }) => {
+  const total = parts.reduce((sum, part) => sum + part.exerciseNumber, 0);
+  console.log(total)
+  return (
+    
+      <p>Number of exercises {total}</p>
+      
+      
+  
+  );
 }
 
 const App = () => {
-  // const definitions
-  const course = 'Half Stack application development'
-  const part1 = "Fundamentals of React"
-  const exercise1 = 10
-  const part2 = "Using props to pass data"
-  const exercise2 = 7
-  const part3 = "State of component"
-  const exercise3 = 14
+  //array of objects
+const course = {
+  name : 'Half Stack application development',
+  parts : [
+  {
+    partName: "Fundamentals of React",
+    exerciseNumber: 10
+  },
+  {
+    partName: "Using props to pass data",
+    exerciseNumber: 7
+  },
+  {
+    partName: "State of component",
+    exerciseNumber: 14
+  }]
+}
+
 
   return (
     <div>
-      <Header name={course} />
-      <Content name = {part1} number={exercise1}/>
-      <Content name = {part2} number={exercise2}/>
-      <Content name = {part3} number={exercise3}/>
-      <Total totalNumber = {exercise1 + exercise2 + exercise3}/>
+      <Header  course = {course.name}/>
+      <Content parts = {course.parts}/>
+      <Total parts= {course.parts} />
     </div>
+     
    )
 }
 
