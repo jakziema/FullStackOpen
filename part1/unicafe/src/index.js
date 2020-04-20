@@ -11,11 +11,23 @@ const Header = ({titleString}) => {
 }
 
 const StatisticsHeader = ({title, stat}) => {
-  return (
-    <p>
-      {title} : {stat}
+  
+    if (title === 'positive') {
+      return (
+        <p>
+      {title} : {stat} %
     </p>
-  )
+      )
+    } return (
+      <p>
+        {title} : {stat}
+      </p>
+      
+    )
+      
+    
+    
+  
 }
 const Button = ({onClick, text}) => {
   return (
@@ -30,19 +42,28 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [allVotes, setAll] = useState(0)
+  const [allScore,setAllScore] = useState(0)
 
   const setGoodClick = () => {
     setGood(good + 1)
+    setAll(allVotes +1)
+    setAllScore(allScore + 1)
   }
 
   const setNeutralClick = () => {
     setNeutral(neutral + 1)
+    setAll(allVotes +1)
   }
 
   const setBadClick = () => {
     console.log(bad)
     setBad(bad + 1)
+    setAll(allVotes +1)
+    setAllScore(allScore - 1)
   }
+
+
 
 
   return (
@@ -55,6 +76,9 @@ const App = () => {
       <StatisticsHeader title = 'good'  stat = {good}/>
       <StatisticsHeader title = 'neutral'  stat = {neutral}/>
       <StatisticsHeader title = 'bad'  stat = {bad}/>
+      <StatisticsHeader title = 'all' stat = {allVotes} />
+      <StatisticsHeader title = 'average' stat = {allScore / allVotes} />
+      <StatisticsHeader title = 'positive' stat = {good * 100 / allVotes } />
     </div>
   )
 }
