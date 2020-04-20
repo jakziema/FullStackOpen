@@ -1,72 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Header = ({course}) => {
+const App = (props) => {
+  const [ counter, setCounter ] = useState(0)
+
+  setTimeout(
+    () => setCounter(counter + 1),
+    1000
+  )
+
   return (
-    <h1>{course}</h1>
+    <div>{counter}</div>
   )
 }
 
-const Part = ({name, count}) => {
-  return (
-  <p>{name} : {count}</p>
-  )
-}
-
-const Content = ({parts}) => {
-  
-  return (
-    <>
-      {parts.map(part => {
-        return (<Part name={part.partName} count={part.exerciseNumber} />)
-      })}
-    </>
-  );
-    
-  
-}
-
-const Total = ({ parts }) => {
-  const totalValue = parts.reduce((sum, part) => sum + part.exerciseNumber, 0);
-  console.log(totalValue)
-  return (
-    
-      <p>Number of exercises {totalValue}</p>
-      
-      
-  
-  );
-}
-
-const App = () => {
-  //array of objects
-const course = {
-  name : 'Half Stack application development',
-  parts : [
-  {
-    partName: "Fundamentals of React",
-    exerciseNumber: 10
-  },
-  {
-    partName: "Using props to pass data",
-    exerciseNumber: 7
-  },
-  {
-    partName: "State of component",
-    exerciseNumber: 14
-  }]
-}
-
-
-  return (
-    <div>
-      <Header  course = {course.name}/>
-      <Content parts = {course.parts}/>
-      <Total parts= {course.parts} />
-    </div>
-     
-   )
-}
-
-ReactDOM.render(<App />, document.getElementById('root'))
-
+ReactDOM.render(
+  <App />, 
+  document.getElementById('root')
+)
