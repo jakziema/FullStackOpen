@@ -57,29 +57,42 @@ const jakub1 = {
   },
 }
 
-const App = () => {
+const Hello = ({name, age}) => {
   
+  const bornYear = () => new Date().getFullYear() - age
+
   return (
     <div>
-      <h1>Siema Siema</h1>
-      {sum(1,5)}
-      {square(5)}
-      {square2(7)}
-      {product(5,2)}
-      {average(10,20)}
-      {jakub1.greet()}
-      {yelena.greet()}
-      {jakub1.doAddition(5,2)}
+      <p>
+        Hello {name}, you are {age} years old.
+      </p>
+      <p>You were probably born in {bornYear()}</p>
     </div>
-) 
+  )
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App = (props) => {
+  const {counter} = props
+  return (
+  <div>{counter}</div>
+  )
+}
+
+let counter = 1
+
+const refresh = () => {
+  ReactDOM.render(<App counter={counter} />, 
+  document.getElementById('root'))
+}
+
+refresh()
+counter += 1
+refresh()
+counter += 1
+refresh()
+
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
