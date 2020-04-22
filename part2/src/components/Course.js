@@ -1,13 +1,7 @@
 import React from 'react'
 import App from '../App'
+import Part from './Part'
 
-const Part = ({part}) => {
-  return (
-    <p>
-      {part.name} : {part.exercises}
-    </p>    
-  )
-}
 
 const Course = ({ course }) => {
   return (
