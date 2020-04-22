@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import App from './App'
 
 const notes = [
   {
@@ -22,27 +23,6 @@ const notes = [
   }
 ]
 
-const Note = ({note}) => {
-  return (
-  <li>{note.content}</li>
-  )
-}
-
-const App = ({notes}) => {
-return (
-    <div>
-      <h1>Notes</h1>
-      <ul>
-        {/* for every note in notes array show its content */}
-        {notes.map(note => 
-          <Note key = {note.id} note = {note.content} />
-         
-        )}
-      </ul>
-    </div>
-  )
-
-}
 
 ReactDOM.render(
   <App notes={notes} />,
