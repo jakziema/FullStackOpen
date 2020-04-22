@@ -1,16 +1,18 @@
 import React from 'react'
-import Content from './components/Content'
+import Content from './components/Course'
+import Header from './components/Header'
 
-const Header = ({ course }) => {
-    return (
-      <h1>{course.name}</h1>
-    )
-  }
+
   
   const Total = ({ course }) => {
-    const sum = course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises
+    
+    const arrayOfExercises = course.parts.map((part) => part.exercises)
+    const sumOfExercises = arrayOfExercises.reduce ((x,y) => x + y)
+
+    console.log(sumOfExercises)
+     
     return(
-      <p>Number of exercises {sum}</p>
+      <p>Number of exercises {sumOfExercises}</p>
     ) 
   }
   

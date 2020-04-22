@@ -20,6 +20,11 @@ const course = {
       name: 'State of a component',
       exercises: 14,
       id: 3
+    }, 
+    {
+      name: "Karate ",
+      exercises: 17,
+      id: 4
     }
   ]
 }

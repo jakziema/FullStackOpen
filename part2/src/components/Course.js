@@ -9,7 +9,7 @@ const Part = ({part}) => {
   )
 }
 
-const Content = ({ course }) => {
+const Course = ({ course }) => {
   return (
     <div>
       {course.parts.map((part) => {
@@ -23,4 +23,4 @@ const Content = ({ course }) => {
   )
 }
 
-export default Content
+export default Course
