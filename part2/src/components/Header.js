@@ -1,11 +1,13 @@
 import React from 'react'
 
-const Header = ({ course }) => {
-    console.log(course.name)
+const Header = ({ title }) => {
+    
     return (
-        
-        <h1>{course.name}</h1>
+            
+        title.map((course2) => 
+            <h1>{course2.name}</h1>
+        )
     )
-  }
+}
 
-  export default Header
+export default Header

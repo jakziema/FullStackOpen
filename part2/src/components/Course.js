@@ -4,8 +4,10 @@ import Part from './Part'
 
 
 const Course = ({ course }) => {
+
   return (
     <div>
+      
       {course.parts.map((part) => {
         return (
           <Part key = {part.id}part = {part} /> 
