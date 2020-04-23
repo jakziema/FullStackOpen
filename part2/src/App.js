@@ -5,14 +5,17 @@ import Total from './components/Total'
 
 
 
-const App = ({course}) => {
-    const calls = course.map((i) => <Course key={i.id} course={i} />)
+const App = ({courses}) => {
+    //we need to use an array not an object
+    const courseArray = courses.map((i) => <Course key={i.id} course={i} />)
+    console.log("Courses object",courses)
+    console.log("Courses map",course1)
 
     return (
         <div>
-            <Header title = {course} />
+            
             {/* <Total course = {course} /> */}
-           {calls}
+            {courseArray}
            {/* <Course course = {course} /> */}
         </div>
       )

@@ -74,4 +74,4 @@ const courses = [
   }
 ]
 
-ReactDOM.render(<App course = {courses}/>, document.getElementById('root'))
+ReactDOM.render(<App courses = {courses}/>, document.getElementById('root'))
