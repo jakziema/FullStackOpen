@@ -5,19 +5,35 @@ const App = (props) => {
   const [ persons, setPersons ] = useState(props.phonebook) 
 
   const [ newName, setNewName ] = useState('')
+  const [showAlert, setShowAlert] = useState(true)
 
   const addPerson = (event) => {
 
     event.preventDefault()
+
+    
 
     const phonebookObject = {
       id: persons.length + 1,
       name: newName
       
     }
-    console.log({newName})
-    setPersons(persons.concat(phonebookObject))
-    setNewName('')
+
+
+     
+    
+    if (persons.some(person => person.name === newName)) {
+      window.alert(`${newName} is already added to phonebook` ) 
+    } else {
+      setPersons(persons.concat(phonebookObject))
+      setNewName('')
+    }
+     
+
+    
+
+    
+    
 
   }
 
