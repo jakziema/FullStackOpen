@@ -7,7 +7,7 @@ const phonebook = [
     id: 1,
     name: 'Jakub',
     // surname: 'Ziemann',
-    // phoneNumber: 7790955,
+     phoneNumber: 7790955,
     // date: '2019-05-30T18:39:34.091Z'
 
   },
@@ -15,7 +15,7 @@ const phonebook = [
     id: 2,
     name: 'Yelena',
     // surname: 'Arakelow',
-    // phoneNumber: 7852798,
+     phoneNumber: 7852798,
     // date: '2019-05-30T18:39:34.091Z'
   }
 ]
