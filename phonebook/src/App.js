@@ -62,6 +62,18 @@ const App = (props) => {
     
   }
 
+  const deletePersonWith = (id) => {
+      console.log("deleting with id: ", id)
+      const url = `http://localhost:3001/phonebook/${id}`
+      const person = persons.find(n => n.id)
+
+      axios
+        .delete(url)
+        .then (response => {
+          console.log('successfully deleted, ', id)
+          setPersons(persons.filter(person => person.id !== id) )
+        })
+  }
 
   const handleFilterChange = (event) => {
     setNewSearchName(event.target.value)
@@ -106,7 +118,7 @@ const App = (props) => {
 
       <h3>Numbers:</h3>
       
-     {namesToShow.map (person => <PersonsDisplay key = {person.id} person = {person} /> )}
+     {namesToShow.map (person => <PersonsDisplay key = {person.id} person = {person} deletePerson = {() => deletePersonWith(person.id) } /> )}
     
       
     </div>

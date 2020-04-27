@@ -3,10 +3,10 @@ import SinglePersonDisplay from './SinglePersonDisplay'
 import App, {namesToShow} from '../App'
 
 
-const PersonsDisplay = ({person}) => {
+const PersonsDisplay = ({person, deletePerson}) => {
     return(
     
-         <SinglePersonDisplay person = {person} />
+         <SinglePersonDisplay person = {person} deletePerson = {deletePerson}/>
     
     
     
