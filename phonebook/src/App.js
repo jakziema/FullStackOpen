@@ -1,14 +1,31 @@
-import React, { useState } from 'react'
-import PersonDisplay from './Components/PersonDisplay'
+import React, { useState,useEffect} from 'react'
+import PersonsDisplay from './Components/PersonsDisplay'
+
+import axios from 'axios'
+
 
 const App = (props) => {
-  const [ persons, setPersons ] = useState(props.phonebook) 
+
+  const [ persons, setPersons ] = useState([]) 
 
   const [ newName, setNewName ] = useState('')
   const [newPhoneNumber, setNewPhoneNumber] = useState('')
 
   const [searchName, setNewSearchName] = useState('')
   const [showAll, setShowAll] = useState(true)
+  
+  const phonebookAddress = 'http://localhost:3001/phonebook'
+
+
+  useEffect( () => {
+    console.log('effect')
+    axios
+      .get(phonebookAddress)
+      .then(response => {
+        console.log('promise fulfilled')
+        setPersons(response.data)
+      })
+  }, [])
 
 
   const addPerson = (event) => {
@@ -55,18 +72,17 @@ const App = (props) => {
 
   }
 
-  
-
   const namesToShow = showAll 
   ? persons
-  : persons.filter(person => person.name.toLowerCase().includes(searchName))
+  : persons.filter(person => person.name.toLowerCase().includes(searchName.toLocaleLowerCase()))
 
   
   
 
   return (
+    
     <div>
-      <h1>Phonebook</h1>
+      <h1>Phonebook</h1>  
       <div>filter shown with a: <input value = {searchName} onChange = {handleFilterChange} />
       </div>
 
@@ -77,12 +93,12 @@ const App = (props) => {
         <div> phone number: <input value = {newPhoneNumber} onChange = {handlePhoneChange}/></div>
         <div><button type="submit">add</button></div>
       </form>
-      <h2>Numbers:</h2>
-      <ul>
+
+
+      <h3>Numbers:</h3>
       
-      
-      {namesToShow.map (person => <PersonDisplay key = {person.id} person = {person} /> )}
-      </ul>
+     {namesToShow.map (person => <PersonsDisplay key = {person.id} person = {person} /> )}
+    
       
     </div>
   )
