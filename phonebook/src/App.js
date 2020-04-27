@@ -45,9 +45,17 @@ const App = (props) => {
         setNewName('')
         setNewPhoneNumber('')
       } else {
-        setPersons(persons.concat(phonebookObject))
-        setNewName('')
-        setNewPhoneNumber('')
+        
+        axios
+          .post(phonebookAddress, phonebookObject)
+          .then(response => {
+            setPersons(persons.concat(response.data))
+            setNewName('')
+            setNewPhoneNumber('')
+          })
+
+        
+
       }
         
     
