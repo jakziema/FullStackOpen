@@ -66,13 +66,18 @@ const App = (props) => {
       console.log("deleting with id: ", id)
       const url = `http://localhost:3001/phonebook/${id}`
       const person = persons.find(n => n.id)
-
-      axios
+      
+      if(window.confirm(`Do you really want to delete ${person.name}?`)) {
+        axios
         .delete(url)
         .then (response => {
           console.log('successfully deleted, ', id)
+
+
           setPersons(persons.filter(person => person.id !== id) )
         })
+      } 
+      
   }
 
   const handleFilterChange = (event) => {
