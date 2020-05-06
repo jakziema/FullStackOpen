@@ -1,6 +1,7 @@
 import React, { useState,useEffect} from 'react'
 import PersonsDisplay from './Components/PersonsDisplay'
 import phonebookService from './services/phonebook'
+import './index.css'
 
 import axios from 'axios'
 
@@ -14,6 +15,9 @@ const App = (props) => {
 
   const [searchName, setNewSearchName] = useState('')
   const [showAll, setShowAll] = useState(true)
+  const [errorMessage, setErrorMessage] = useState(null)
+
+  
   
   const phonebookAddress = 'http://localhost:3001/phonebook'
 
@@ -28,6 +32,17 @@ const App = (props) => {
   }, [])
 
 
+  const Notification = ({ message }) => {
+    if (message === null) {
+      return null
+    }
+  
+    return (
+      <div className="notification">
+        {message}
+      </div>
+    )
+  }
   const addPerson = (event) => {
 
     event.preventDefault()
@@ -53,6 +68,18 @@ const App = (props) => {
             setPersons(persons.concat(returnedData))
             setNewName('')
             setNewPhoneNumber('')
+
+            setErrorMessage(
+              ` ${newName} is added to the server`
+            )
+            setTimeout(() => {
+              setErrorMessage(null)
+            }, 5000)
+
+          })
+
+          .catch(error => {
+            console.log(error.response)
           })
 
         
@@ -108,7 +135,8 @@ const App = (props) => {
   return (
     
     <div>
-      <h1>Phonebook</h1>  
+      <h1>Phonebook</h1>
+      <Notification message={errorMessage} />  
       <div>filter shown with a: <input value = {searchName} onChange = {handleFilterChange} />
       </div>
 
