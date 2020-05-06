@@ -56,9 +56,27 @@ const App = (props) => {
     }
      
       if (persons.some(person => person.name === newName)) {
-        window.alert(`${newName} is already added to phonebook` )
-        setNewName('')
+        
+        
+        if(window.confirm(`${newName} is already added to 
+        phonebook. Do you want to change the number?`)) 
+        { 
+          
+          const personID = persons.filter(person => person.name === newName).map(person => person.id)
+          
+          phonebookService
+            .update(personID,phonebookObject)
+            .then (returnedData => {
+              setPersons(persons.concat(returnedData))
+              setNewName('')
+              setNewPhoneNumber('')
+            })
+          console.log("change number")
+        } else {
+          setNewName('')
         setNewPhoneNumber('')
+        }
+
       } else {
         
       
